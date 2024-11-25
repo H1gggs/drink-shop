@@ -55,7 +55,7 @@ export default async (
                 email: customer.email as string,
               },
               data: {
-                isActive: true,
+//                isActive: true,
               },
             });
 
@@ -64,30 +64,29 @@ export default async (
               const items = JSON.parse(metadata.items);
               
               // Assuming you have a default store for online sales
-              const defaultStore = await prisma.store.findFirst({
-                where: { isActive: true }
-              });
+              // const defaultStore = await prisma.store.findFirst({
+              //   where: { isActive: true }
+              // });
 
-              if (!defaultStore) {
-                throw new Error("Default store not found");
-              }
+              // if (!defaultStore) {
+              //   throw new Error("Default store not found");
+              // }
 
               // Create sales records for each item
               for (const item of items) {
-                await prisma.sale.create({
+                await prisma.orderItem.create({
                   data: {
                     quantity: item.quantity,
-                    totalPrice: item.price * item.quantity,
-                    status: "completed",
-                    customer: {
+                    price: item.price * item.quantity,
+                    order: {
                       connect: { id: user.id }
                     },
                     product: {
                       connect: { id: item.sku }
                     },
-                    store: {
-                      connect: { id: "cm2qeedkl0005p0brayy8urps" }
-                    }
+                    // store: {
+                    //   connect: { id: "cm2qeedkl0005p0brayy8urps" }
+                    // }
                   }
                 });
               }

@@ -18,7 +18,7 @@ const ShoppingCart: React.FC<Props> = (props) => {
 
   const calculateTotalPrice = () => {
     return cartItems.reduce(
-      (total, item) => total + parseInt(item?.price) * item.quantity,
+      (total, item) => total + parseInt(item?.price) * 1,
       0
     );
   };

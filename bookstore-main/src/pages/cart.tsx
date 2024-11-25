@@ -122,7 +122,7 @@
   function Cart(props: UserType) {
     const cartItems = useSelector((state: RootState) => state.cart.items);
     console.log('________________', cartItems);
-    const count = cartItems.reduce((total, item) => total + item.quantity, 0);
+    const count = cartItems.reduce((total, item) => total + 1, 0);
 
     const calculateTotal = () => {
       // @ts-ignore
@@ -196,7 +196,7 @@
                               </span>
                                     <div className="flex items-center border rounded-lg">
                                       <button className="px-3 py-1 hover:bg-gray-100">-</button>
-                                      <span className="px-3 py-1 border-x">{sale.quantity}</span>
+                                      <span className="px-3 py-1 border-x">{sale.price}</span>
                                       <button className="px-3 py-1 hover:bg-gray-100">+</button>
                                     </div>
                                   </div>
